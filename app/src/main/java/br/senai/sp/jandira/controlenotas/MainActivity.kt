@@ -38,32 +38,20 @@ class MainActivity : AppCompatActivity() {
                 val nota2 = nota2EditText.text.toString().toInt()
                 val nome = nomeEditText.text.toString()
 
+                val media = calcularMedia(nota1, nota2, 5, 10)
 
-                if (nota1 > 10 || nota2 > 10) {
-                    relatorioTextView.text = ""
-                    resultadoTextView.text = "Nota Invalida!"
-                    resultadoTextView.setTextColor(Color.RED)
-                }else {
-                    val media = (nota1 + nota2) / 2
+                relatorioTextView.text = "Nome : $nome\n"+
+                        "Nota 1 : $nota1\n" +
+                        "Nota 2 : $nota2\n" +
+                        "Média : $media";
 
-                    relatorioTextView.text = "Nome : $nome\n"+
-                            "Nota 1 : $nota1\n" +
-                            "Nota 2 : $nota2\n" +
-                            "Média : $media";
+                resultadoTextView.setText(definirSituacao(media));
 
-                    if (media >= 5) {
-                        resultadoTextView.text = "Aprovado!\n:)"
-
-                        resultadoTextView.setTextColor(Color.GREEN)
-                    } else {
-                        resultadoTextView.text = "Reprovado!\n:("
-
-                        resultadoTextView.setTextColor(Color.RED)
-                    }
-                }
             }
         }
     }
+
+
 
     private fun validarCampos(): Boolean {
         var noError = true
@@ -85,4 +73,11 @@ class MainActivity : AppCompatActivity() {
 
         return noError;
     }
+
+
+
+    /*
+     arrow Function ->
+        val function = {param1: type, param2 : type -> "result"}
+     */
 }
