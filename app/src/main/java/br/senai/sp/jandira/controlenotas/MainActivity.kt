@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
+lateinit var nota1EditText : EditText
+lateinit var nota2EditText : EditText
+lateinit var nomeEditText: EditText;
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,43 +18,76 @@ class MainActivity : AppCompatActivity() {
 
         val calcular = findViewById<Button>(R.id.calcular)
         val sair = findViewById<Button>(R.id.sair)
-        val resultado = findViewById<TextView>(R.id.resultado)
-        val relatorio = findViewById<TextView>(R.id.relatorio)
+        val resultadoTextView = findViewById<TextView>(R.id.resultado)
+        val relatorioTextView = findViewById<TextView>(R.id.relatorio)
 
-        resultado.text = ""
-        relatorio.text = ""
+        resultadoTextView.text = ""
+        relatorioTextView.text = ""
 
         sair.setOnClickListener {
             finish()
         }
 
         calcular.setOnClickListener {
-            val nota1 = findViewById<EditText>(R.id.nota1).text.toString().toInt()
-            val nota2 = findViewById<EditText>(R.id.nota2).text.toString().toInt()
-            val faltas = findViewById<EditText>(R.id.faltas).text.toString().toInt()
+            nota1EditText = findViewById(R.id.nota1)
+            nota2EditText = findViewById(R.id.nota2)
+            nomeEditText = findViewById(R.id.nome)
 
-            if (nota1 > 10 || nota2 > 10) {
-                relatorio.text = ""
-                resultado.text = "Nota Invalida!"
-                resultado.setTextColor(Color.RED)
-            }else {
-                val media = (nota1 + nota2) / 2
+            if (validarCampos()){
+                val nota1 = nota1EditText.text.toString().toInt()
+                val nota2 = nota2EditText.text.toString().toInt()
+                val nome = nomeEditText.text.toString()
 
-                relatorio.text = "Nota 1 : $nota1\n" +
-                        "Nota 2 : $nota2\n" +
-                        "Média : $media\n" +
-                        "Faltas : $faltas";
 
-                if (media >= 5) {
-                    resultado.text = "Aprovado!\n:)"
+                if (nota1 > 10 || nota2 > 10) {
+                    relatorioTextView.text = ""
+                    resultadoTextView.text = "Nota Invalida!"
+                    resultadoTextView.setTextColor(Color.RED)
+                }else {
+                    val media = (nota1 + nota2) / 2
 
-                    resultado.setTextColor(Color.GREEN)
-                } else {
-                    resultado.text = "Reprovado!\n:("
+                    relatorioTextView.text = "Nome : $nome\n"+
+                            "Nota 1 : $nota1\n" +
+                            "Nota 2 : $nota2\n" +
+                            "Média : $media";
 
-                    resultado.setTextColor(Color.RED)
+                    if (media >= 5) {
+                        resultadoTextView.text = "Aprovado!\n:)"
+
+                        resultadoTextView.setTextColor(Color.GREEN)
+                    } else {
+                        resultadoTextView.text = "Reprovado!\n:("
+
+                        resultadoTextView.setTextColor(Color.RED)
+                    }
                 }
+            } else {
+                relatorioTextView.text = ""
+
+                resultadoTextView.text = "Por Favor preencha todos \nos campos"
+                resultadoTextView.setTextColor(Color.RED)
             }
         }
+    }
+
+    private fun validarCampos(): Boolean {
+        var noError = true
+
+        if (nota1EditText.text.isBlank()) {
+            nota1EditText.setError("Digite a nota 1")
+            noError = false;
+        }
+
+        if (nota2EditText.text.isBlank()) {
+            nota2EditText.setError("Digite a nota 2")
+            noError = false;
+        }
+
+        if (nomeEditText.text.isBlank()) {
+            nomeEditText.setError("Digite a nota 2")
+            noError = false;
+        }
+
+        return noError;
     }
 }
