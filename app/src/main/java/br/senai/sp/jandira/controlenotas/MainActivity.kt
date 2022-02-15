@@ -61,11 +61,6 @@ class MainActivity : AppCompatActivity() {
                         resultadoTextView.setTextColor(Color.RED)
                     }
                 }
-            } else {
-                relatorioTextView.text = ""
-
-                resultadoTextView.text = "Por Favor preencha todos \nos campos"
-                resultadoTextView.setTextColor(Color.RED)
             }
         }
     }
