@@ -1,11 +1,13 @@
 package br.senai.sp.jandira.controlenotas
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 
 lateinit var nota1EditText : EditText
 lateinit var nota2EditText : EditText
@@ -18,11 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         val calcular = findViewById<Button>(R.id.calcular)
         val sair = findViewById<Button>(R.id.sair)
-        val resultadoTextView = findViewById<TextView>(R.id.resultado)
-        val relatorioTextView = findViewById<TextView>(R.id.relatorio)
-
-        resultadoTextView.text = ""
-        relatorioTextView.text = ""
 
         sair.setOnClickListener {
             finish()
@@ -39,13 +36,26 @@ class MainActivity : AppCompatActivity() {
                 val nome = nomeEditText.text.toString()
 
                 val media = calcularMedia(nota1, nota2, 5, 10)
+                val situacao = definirSituacao(media);
 
-                relatorioTextView.text = "Nome : $nome\n"+
-                        "Nota 1 : $nota1\n" +
-                        "Nota 2 : $nota2\n" +
-                        "Média : $media";
+                val intent = Intent(this, ResultadoActivity::class.java)
 
-                resultadoTextView.setText(definirSituacao(media));
+                // passando valores entre activity's
+                intent.putExtra("nome", nome)
+                intent.putExtra("nota1", nota1)
+                intent.putExtra("nota2", nota2)
+                intent.putExtra("media", media)
+                intent.putExtra("situacao", situacao)
+
+                // iniciando nova activity
+                startActivity(intent);
+
+//                relatorioTextView.text = "Nome : $nome\n"+
+//                        "Nota 1 : $nota1\n" +
+//                        "Nota 2 : $nota2\n" +
+//                        "Média : $media";
+//
+//                resultadoTextView.setText(definirSituacao(media));
 
             }
         }

@@ -65,22 +65,22 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/relatorio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="TestResultado"
-        android:textSize="20sp"
-        android:textAlignment="center" />
+<!--    <TextView-->
+<!--        android:id="@+id/relatorio"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:text="TestResultado"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textAlignment="center" />-->
 
-    <TextView
-        android:id="@+id/resultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TestResultado"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:textColor="@color/purple_200" />
+<!--    <TextView-->
+<!--        android:id="@+id/resultado"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="TestResultado"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/purple_200" />-->
 
 </LinearLayout>
